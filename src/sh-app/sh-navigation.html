@@ -1,0 +1,56 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="sh-navigation">
+  <template>
+    <style>
+      :host {
+        display: flex;
+        width: 100%;
+      }
+
+      ul {
+        display: flex;
+        width: 100%;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      li {
+        display: flex;
+        flex: 1;
+        justify-content: center;
+      }
+    </style>
+
+    <ul>
+      <li>Profile</li>
+      <li>Points</li>
+      <li><a href="#" on-click="fireNavigationEvent" data-nav-item="leaderboard">Leaderboard</a></li>
+    </ul>
+  </template>
+
+  <script>
+    class ShNavigation extends Polymer.Element {
+      static get is() { return 'sh-navigation'; }
+
+      fireNavigationEvent(event) {
+        event.preventDefault();
+
+        const target = event.target;
+        const navigationItem = target.getAttribute('data-nav-item');
+        const customEvent = new CustomEvent('nav-item-selected', {
+          detail: {
+            navItem: navigationItem
+          },
+          bubbles: true,
+          composed: true
+        });
+
+        this.dispatchEvent(customEvent);
+      }
+    }
+
+    window.customElements.define(ShNavigation.is, ShNavigation);
+  </script>
+</dom-module>

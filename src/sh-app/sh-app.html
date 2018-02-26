@@ -1,0 +1,65 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+
+<link rel="import" href="./sh-splash.html">
+<link rel="import" href="./sh-main.html">
+
+<dom-module id="sh-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+        min-height: 100vh;
+      }
+    </style>
+    <iron-pages
+      selected="[[page]]"
+      attr-for-selected="name"
+      role="main">
+      <sh-splash name="splash"></sh-splash>
+      <sh-main name="main"></sh-main>
+    </iron-pages>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class ShApp extends Polymer.Element {
+      static get is() { return 'sh-app'; }
+      static get properties() {
+        return {
+          page: {
+            type: String,
+            value: 'main'
+          },
+          user: {
+            type: Object,
+            value: null
+          },
+          timeout: {
+            type: Number,
+            value: 3000
+          }
+        };
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+
+        if (this.user) {
+          return;
+        }
+
+        this.page = 'splash';
+
+        Polymer.Async.timeOut.run(() => {
+          this.page = 'main';
+        }, this.timeout);
+      }
+    }
+
+    window.customElements.define(ShApp.is, ShApp);
+  </script>
+</dom-module>

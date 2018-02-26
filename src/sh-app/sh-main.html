@@ -1,0 +1,101 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+
+<link rel="import" href="./sh-navigation.html">
+<link rel="import" href="./sh-panel.html">
+<link rel="import" href="./sh-leaderboard.html">
+<link rel="import" href="./sh-capture-photo.html">
+
+<dom-module id="sh-main">
+  <template>
+    <style>
+      :host {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .panel {
+        display: block;
+        visibility: hidden;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        transition: visibility 0.5s linear,
+                    transform 0.5s ease-in-out;
+        transform: translate3d(0, 100vh, 0);
+      }
+
+      .panel.open {
+        visibility: visible;
+        transition: visibility 0s linear,
+                    transform 0.5s ease-in-out;
+        transform: translate3d(0, 0, 0);
+      }
+    </style>
+
+    <sh-navigation></sh-navigation>
+    <h1>Map</h1>
+    <button on-click="capturePhoto">Capture Photo</button>
+    <iron-pages
+      class$="panel [[panelOpen]]"
+      selected="[[navItem]]"
+      attr-for-selected="name">
+      <sh-panel name="leaderboard">
+        <sh-leaderboard></sh-leaderboard>
+      </sh-panel>
+      <sh-panel name="capture-photo">
+        <sh-capture-photo></sh-capture-photo>
+      </sh-panel>
+    </iron-pages>
+  </template>
+
+  <script>
+    class ShMain extends Polymer.Element {
+      static get is() { return 'sh-main'; }
+      static get properties() {
+        return {
+          navItem: {
+            type: String,
+            value: 'leaderboard'
+          },
+          panelOpenClass: {
+            type: String,
+            value: ''
+          }
+        };
+      }
+
+      constructor() {
+        super();
+        this.addEventListener('nav-item-selected', this.navItemSelectedHandler);
+        this.addEventListener('nav-item-close', this.closeNav);
+      }
+
+      navItemSelectedHandler(event) {
+        this.navItem = event.detail.navItem;
+        this.panelOpen = 'open';
+      }
+
+      closeNav() {
+        this.panelOpen = '';
+      }
+
+      capturePhoto() {
+        const customEvent = new CustomEvent('nav-item-selected', {
+          detail: {
+            navItem: 'capture-photo'
+          }
+        });
+
+        this.dispatchEvent(customEvent);
+      }
+    }
+
+    window.customElements.define(ShMain.is, ShMain);
+  </script>
+</dom-module>

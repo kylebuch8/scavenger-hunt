@@ -1,0 +1,25 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="sh-capture-photo">
+  <template>
+    <style>
+      :host {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        background: #ccc;
+      }
+    </style>
+
+    <h1>Capture Photo</h1>
+    <input type="file" name="image" accept="image/*" />
+  </template>
+
+  <script>
+    class ShCapturePhoto extends Polymer.Element {
+      static get is() { return 'sh-capture-photo'; }
+    }
+
+    window.customElements.define(ShCapturePhoto.is, ShCapturePhoto);
+  </script>
+</dom-module>

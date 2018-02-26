@@ -1,0 +1,38 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="sh-panel">
+  <template>
+    <style>
+      :host {
+        display: block;
+        position: relative;
+      }
+
+      button {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    </style>
+
+    <button on-click="closePanel">Close</button>
+    <slot></slot>
+  </template>
+
+  <script>
+    class ShPanel extends Polymer.Element {
+      static get is() { return 'sh-panel' };
+
+      closePanel() {
+        const customEvent = new CustomEvent('nav-item-close', {
+          bubbles: true,
+          composed: true
+        });
+
+        this.dispatchEvent(customEvent);
+      }
+    }
+
+    window.customElements.define(ShPanel.is, ShPanel);
+  </script>
+</dom-module>

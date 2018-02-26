@@ -1,0 +1,23 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="sh-leaderboard">
+  <template>
+    <style>
+      :host {
+        display: flex;
+        height: 100vh;
+        background: #ececec;
+      }
+    </style>
+
+    <h1>Leaderboard</h1>
+  </template>
+
+  <script>
+    class ShLeaderboard extends Polymer.Element {
+      static get is() { return 'sh-leaderboard'; }
+    }
+
+    window.customElements.define(ShLeaderboard.is, ShLeaderboard);
+  </script>
+</dom-module>
