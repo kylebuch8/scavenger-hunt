@@ -11,36 +11,143 @@
   <template>
     <style>
       :host {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        overflow: hidden;
-        position: relative;
+        display: block;
+        /* flex-direction: column; */
+        /* height: 100vh;
+        overflow: hidden; */
+        /* position: relative; */
       }
 
       .panel {
         display: block;
         visibility: hidden;
-        position: absolute;
+        position: fixed;
         top: 0;
         right: 0;
         bottom: 0;
         left: 0;
+        z-index: 200;
         transition: visibility 0.5s linear,
-                    transform 0.5s ease-in-out;
+        transform 0.5s ease-in-out;
         transform: translate3d(0, 100vh, 0);
       }
 
       .panel.open {
         visibility: visible;
         transition: visibility 0s linear,
-                    transform 0.5s ease-in-out;
+        transform 0.5s ease-in-out;
         transform: translate3d(0, 0, 0);
+      }
+
+      .map {
+        background-image: url(/images/map.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        grid-template-rows: repeat(31, 10vw);
+      }
+
+      .party-island {
+        grid-column: 9;
+        grid-row: 6 / 12;
+        background-color: yellow;
+      }
+
+      .stage {
+        background-color: hotpink;
+        position: relative;
+      }
+
+      .stage--one {
+        grid-column: 2;
+        grid-row: 7;
+      }
+
+      .stage--two {
+        grid-column: 4;
+        grid-row: 9;
+      }
+
+      .stage--three {
+        grid-column: 5;
+        grid-row: 11;
+      }
+
+      .stage--four {
+        grid-column: 2;
+        grid-row: 14;
+      }
+
+      .stage--five {
+        grid-column: 8;
+        grid-row: 17;
+      }
+
+      .stage--six {
+        grid-column: 8;
+        grid-row: 22;
+      }
+
+      .stage--seven {
+        grid-column: 5;
+        grid-row: 24;
+      }
+
+      .stage--eight {
+        grid-column: 6 / 8;
+        grid-row: 29 / 31;
+      }
+
+      .stage__action {
+        border: 0;
+        background-color: transparent;
+        outline: 2px solid red;
+        position: absolute;
+        width: calc(100% + 20px);
+        top: -10px;
+        left: -10px;
+        bottom: -10px;
+        z-index: 10;
+        display: block;
       }
     </style>
 
     <sh-navigation></sh-navigation>
-    <h1>Map</h1>
+
+    <div class="map">
+
+      <button class="party-island">
+        Party! 🎉
+      </button>
+
+      <div class="stage stage--one">
+        <button class="stage__action">1✨</button>
+      </div>
+      <div class="stage stage--two">
+        <button class="stage__action">2✨</button>
+      </div>
+      <div class="stage stage--three">
+        <button class="stage__action">3✨</button>
+      </div>
+      <div class="stage stage--four">
+        <button class="stage__action">4✨</button>
+      </div>
+      <div class="stage stage--five">
+        <button class="stage__action">5✨</button>
+      </div>
+      <div class="stage stage--six">
+        <button class="stage__action">6✨</button>
+      </div>
+      <div class="stage stage--seven">
+        <button class="stage__action">7✨</button>
+      </div>
+      <div class="stage stage--eight">
+        <button class="stage__action">8✨</button>
+      </div>
+
+    </div>
+
     <button on-click="capturePhoto">Capture Photo</button>
     <iron-pages
       class$="panel [[panelOpen]]"

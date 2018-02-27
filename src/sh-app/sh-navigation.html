@@ -5,33 +5,49 @@
   <template>
     <style>
       :host {
-        display: flex;
+        display: block;
+        position: fixed;
+        top: 0;
         width: 100%;
+        z-index: 100;
+        background-color: rgba(0,0,0,.5); /* these are the clouds pattern */
       }
 
       ul {
         display: flex;
-        width: 100%;
         list-style-type: none;
         margin: 0;
         padding: 0;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem;
+        height: calc(38px * 2);
       }
 
-      li {
-        display: flex;
-        flex: 1;
-        justify-content: center;
+      a {
+        text-decoration: none;
+        color: black;
       }
+
+      img {
+        border-radius: 50%;
+        display: block;
+      }
+
     </style>
 
     <ul>
-      <li>Points</li>
+      <li>🎾 x 2542</li>
       <li>
         <a href="#" on-click="fireNavigationEvent" data-nav-item="leaderboard">
-          <sh-number type="ordinal" number="10"></sh-number>
+          🏆 <sh-number type="ordinal" number="10"></sh-number>
         </a>
       </li>
-      <li><a href="#" on-click="fireNavigationEvent" data-nav-item="profile">Profile</a></li>
+      <li>
+        <a href="#" on-click="fireNavigationEvent" data-nav-item="profile">
+          <img src="http://via.placeholder.com/50x50" alt="username">
+        </a>
+      </li>
     </ul>
   </template>
 
