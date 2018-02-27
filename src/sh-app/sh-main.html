@@ -12,8 +12,8 @@
       :host {
         display: block;
         /* flex-direction: column; */
-        /* height: 100vh; */
-        /* overflow: hidden; */
+        /* height: 100vh;
+        overflow: hidden; */
         /* position: relative; */
       }
 
@@ -28,7 +28,7 @@
         z-index: 200;
         transition: visibility 0.5s linear,
         transform 0.5s ease-in-out;
-        transform: translate3d(0, -100vh, 0);
+        transform: translate3d(0, 100vh, 0);
       }
 
       .panel.open {
@@ -103,12 +103,11 @@
         background-color: transparent;
         outline: 2px solid red;
         position: absolute;
-        width: calc(10vw + 20px);
+        width: calc(100% + 20px);
         top: -10px;
         left: -10px;
         bottom: -10px;
         z-index: 10;
-        width: calc( 100% + 20px);
         display: block;
       }
     </style>
