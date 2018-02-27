@@ -25,7 +25,7 @@ $ polymer build
 This will create builds of your application in the `build/` directory, optimized to be served in production. You can then serve the built versions by giving `polymer serve` a folder to serve from:
 
 ```
-$ polymer serve build/default
+$ polymer serve build/es5-bundled
 ```
 
 ## Running Tests
