@@ -1,4 +1,5 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="./sh-number.html">
 
 <dom-module id="sh-navigation">
   <template>
@@ -24,9 +25,13 @@
     </style>
 
     <ul>
-      <li>Profile</li>
       <li>Points</li>
-      <li><a href="#" on-click="fireNavigationEvent" data-nav-item="leaderboard">Leaderboard</a></li>
+      <li>
+        <a href="#" on-click="fireNavigationEvent" data-nav-item="leaderboard">
+          <sh-number type="ordinal" number="10"></sh-number>
+        </a>
+      </li>
+      <li><a href="#" on-click="fireNavigationEvent" data-nav-item="profile">Profile</a></li>
     </ul>
   </template>
 
@@ -37,7 +42,7 @@
       fireNavigationEvent(event) {
         event.preventDefault();
 
-        const target = event.target;
+        const target = event.currentTarget;
         const navigationItem = target.getAttribute('data-nav-item');
         const customEvent = new CustomEvent('nav-item-selected', {
           detail: {

@@ -11,14 +11,17 @@
       html,
       body {
         margin: 0;
-        min-height: 100vh;
+        padding: 0;
+        height: 100%;
       }
     </style>
 
     <!-- See https://goo.gl/OOhYW5 -->
     <link rel="manifest" href="/manifest.json">
 
-    <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.10/custom-elements-es5-adapter.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.5/require.min.js"></script>
+    <script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
 
     <link rel="import" href="/src/sh-app/sh-app.html">
   </head>

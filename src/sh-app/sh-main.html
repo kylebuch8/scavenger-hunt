@@ -4,6 +4,7 @@
 <link rel="import" href="./sh-navigation.html">
 <link rel="import" href="./sh-panel.html">
 <link rel="import" href="./sh-leaderboard.html">
+<link rel="import" href="./sh-profile.html">
 <link rel="import" href="./sh-capture-photo.html">
 
 <dom-module id="sh-main">
@@ -12,7 +13,7 @@
       :host {
         display: flex;
         flex-direction: column;
-        height: 100vh;
+        height: 100%;
         overflow: hidden;
         position: relative;
       }
@@ -45,6 +46,9 @@
       class$="panel [[panelOpen]]"
       selected="[[navItem]]"
       attr-for-selected="name">
+      <sh-panel name="profile">
+        <sh-profile></sh-profile>
+      </sh-panel>
       <sh-panel name="leaderboard">
         <sh-leaderboard></sh-leaderboard>
       </sh-panel>

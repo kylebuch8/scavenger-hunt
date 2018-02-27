@@ -1,0 +1,23 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="sh-profile">
+  <template>
+    <style>
+      :host {
+        display: flex;
+        height: 100%;
+        background: wheat;
+      }
+    </style>
+
+    <h1>Profile</h1>
+  </template>
+
+  <script>
+    class ShProfile extends Polymer.Element {
+      static get is() { return 'sh-profile'; }
+    }
+
+    window.customElements.define(ShProfile.is, ShProfile);
+  </script>
+</dom-module>

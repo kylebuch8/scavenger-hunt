@@ -1,0 +1,53 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="sh-number">
+  <template>
+    [[formattedNumber]]
+  </template>
+
+  <script>
+    class ShNumber extends Polymer.Element {
+      static get is() { return 'sh-number'; }
+      static get properties() {
+        return {
+          type: {
+            type: String,
+            value: 'ordinal'
+          },
+          number: {
+            type: Number,
+            observer: '_numberChanged'
+          },
+          formattedNumber: {
+            type: String
+          }
+        }
+      }
+
+      _numberChanged(newValue) {
+        this.formattedNumber = this.ordinalSuffixOf(newValue);
+      }
+
+      ordinalSuffixOf(i) {
+        let j = i % 10;
+        let k = i % 100;
+
+        if (j == 1 && k != 11) {
+            return i + "st";
+        }
+
+        if (j == 2 && k != 12) {
+            return i + "nd";
+        }
+
+        if (j == 3 && k != 13) {
+            return i + "rd";
+        }
+
+        return i + "th";
+      }
+    }
+
+    window.customElements.define(ShNumber.is, ShNumber);
+  </script>
+</dom-module>
