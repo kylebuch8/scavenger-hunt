@@ -1,0 +1,25 @@
+{
+  "name": "scavenger-hunt",
+  "version": "1.0.0",
+  "description": "## Install the Polymer-CLI",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kylebuch8/scavenger-hunt.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kylebuch8/scavenger-hunt/issues"
+  },
+  "homepage": "https://github.com/kylebuch8/scavenger-hunt#readme",
+  "dependencies": {
+    "blueimp-load-image": "^2.18.0"
+  }
+}

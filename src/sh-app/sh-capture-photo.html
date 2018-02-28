@@ -1,4 +1,5 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="./sh-loadimage.html">
 
 <dom-module id="sh-capture-photo">
   <template>
@@ -12,12 +13,78 @@
     </style>
 
     <h1>Capture Photo</h1>
-    <input type="file" name="image" accept="image/*" />
+    <input type="file" id="imageInput" name="image" accept="image/*" />
+    <div>
+      <canvas id="canvas"></canvas>
+    </div>
+    <button on-click="upload">Upload Photo</button>
   </template>
 
   <script>
     class ShCapturePhoto extends Polymer.Element {
       static get is() { return 'sh-capture-photo'; }
+
+      constructor() {
+        super();
+        this.imageInputOnChangeHandler = this.imageInputOnChangeHandler.bind(this);
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+
+        this.canvas = this.shadowRoot.querySelector('#canvas');
+        this.canvasContext = this.canvas.getContext('2d');
+        this.imageInput = this.shadowRoot.querySelector('#imageInput');
+        this.imageInput.addEventListener('change', this.imageInputOnChangeHandler);
+      }
+
+      disconnectedCallback() {
+        super.disconnectedCallback();
+        this.imageInput.removeEventListener('change', this.imageInputOnChangeHandler);
+      }
+
+      imageInputOnChangeHandler(event) {
+        const self = this;
+
+        if (event.target.files.length === 1 && event.target.files[0].type.indexOf('image/') === 0) {
+          let file = event.target.files[0];
+          let options = {
+            maxWidth: 300,
+            maxHeight: 600,
+            canvas: true,
+            downsamplingRatio: 0.05
+          };
+
+          loadImage.parseMetaData(file, data => {
+            if (data.exif) {
+              options['orientation'] = data.exif.get('Orientation');
+            }
+
+            loadImage(file, data => {
+              self.canvas = self.shadowRoot.querySelector('canvas');
+              self.canvas.parentNode.replaceChild(data, this.canvas);
+              self.canvas = data;
+            }, options);
+          });
+        }
+      }
+
+      upload() {
+        let image = this.canvas.toDataURL('image/jpeg');
+        let body = JSON.stringify({
+          image: image
+        });
+
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let request = new Request('http://localhost:8085/upload', {
+          method: 'POST',
+          body: body,
+          headers: headers
+        });
+
+        fetch(request)
+          .then(data => console.log(data));
+      }
     }
 
     window.customElements.define(ShCapturePhoto.is, ShCapturePhoto);
