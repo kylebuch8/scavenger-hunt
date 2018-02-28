@@ -7,7 +7,7 @@ First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polyme
 ## Install the dependencies
 
 ```
-$ bower install
+$ bower install && npm install
 ```
 
 ## Viewing Your Application
