@@ -1,0 +1,6 @@
+{
+  "name": "Scavenger Hunt",
+  "short_name": "Scavenger Hunt",
+  "start_url": "/",
+  "display": "standalone"
+}

@@ -1,0 +1,30 @@
+{
+    "Sauce Connect": {
+        "download_url": "https://wiki.saucelabs.com/display/DOCS/Setting+Up+Sauce+Connect", 
+        "linux": {
+            "build": 3856, 
+            "download_url": "https://saucelabs.com/downloads/sc-4.4.11-linux.tar.gz", 
+            "sha1": "4a70c3a559913274a35b056a6e5d274cdbe4fdec"
+        }, 
+        "linux32": {
+            "build": 3856, 
+            "download_url": "https://saucelabs.com/downloads/sc-4.4.11-linux32.tar.gz", 
+            "sha1": "d9c8bfefeecf9244eb0f543b60496d9a0f007437"
+        }, 
+        "osx": {
+            "build": 3856, 
+            "download_url": "https://saucelabs.com/downloads/sc-4.4.11-osx.zip", 
+            "sha1": "9b8fe1342b94518b9a4e3bc7933cf93873461910"
+        }, 
+        "version": "4.4.11", 
+        "win32": {
+            "build": 1833, 
+            "download_url": "https://saucelabs.com/downloads/sc-4.4.11-win32.zip", 
+            "sha1": "c6e9f3f2a99411da00e22147918d50360af5f989"
+        }
+    }, 
+    "Sauce Connect 2": {
+        "download_url": "https://docs.saucelabs.com/reference/sauce-connect/", 
+        "version": "4.3.13-r999"
+    }
+}
